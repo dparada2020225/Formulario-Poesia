@@ -175,7 +175,7 @@ function VerFormularios(req, res) {
     Formulario.find({}, (err, formularioEncontrados) => {
         if (err) return res.status(500).send({ mensaje: 'error en la peticion' });
         if (!formularioEncontrados) return res.status(500).send({ mensaje: 'Error al encontrar Formularios' });
-        return res.status(200).send({ Formularios: formularioEncontrados });
+        return res.status(200).send(formularioEncontrados);
     }) 
 }
 
