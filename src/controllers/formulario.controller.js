@@ -9,7 +9,7 @@ function newForm(req, res) {
 
             if (err) return res.status(500).send({ mensaje: 'error en la peticion ' })
             if (!formularioEncontrado) return res.status(500).send({ mensaje: 'error' })
-            return res.status(200).send({ mensaje: "este estudiante ya lleno el formulario" })
+            return res.status(500).send({ mensaje: "Este estudiante ya lleno el formulario" })
 
         } else {
             let carnet = parametros.carnet
@@ -87,8 +87,7 @@ function newForm(req, res) {
                                             modeloFormulario.save((err, formularioGuardado) => {
                                                 if (err) return res.status(500).send({ mensaje: 'error en la peticion ' })
                                                 if (!formularioGuardado) return res.status(500).send({ mensaje: 'error al crear formulario ' })
-                                                return res.status(200).send(formularioGuardado)
-                                        
+                                                return res.status(200).send((formularioGuardado.fechaDeclamacion).toLocaleDateString())
                                             })
                                         } else if (UltimaLetra === "3" && generoLiterario === "epica") {
                                             var date = new Date()
@@ -108,8 +107,7 @@ function newForm(req, res) {
                                             modeloFormulario.save((err, formularioGuardado) => {
                                                 if (err) return res.status(500).send({ mensaje: 'error en la peticion ' })
                                                 if (!formularioGuardado) return res.status(500).send({ mensaje: 'error al crear formulario ' })
-                                                return res.status(200).send(formularioGuardado)
-                                        
+                                                return res.status(200).send((formularioGuardado.fechaDeclamacion).toLocaleDateString())
                                             })
                                         } else if ((UltimaLetra === "1" || UltimaLetra === "3" || UltimaLetra === "9") && (generoLiterario === "epica" || generoLiterario === "lirica" || generoLiterario === "dramatico")) {
                                             let day;
@@ -139,11 +137,11 @@ function newForm(req, res) {
                                             modeloFormulario.save((err, formularioGuardado) => {
                                                 if (err) return res.status(500).send({ mensaje: 'error en la peticion ' })
                                                 if (!formularioGuardado) return res.status(500).send({ mensaje: 'error al crear formulario ' })
-                                                return res.status(200).send(formularioGuardado)
+                                                return res.status(200).send((formularioGuardado.fechaDeclamacion).toLocaleDateString())
                                         
                                             })
                                         } else {
-                                            return res.status(500).send({ message: "escriba bien los datos" })
+                                            return res.status(500).send({ mensaje: "escriba bien los datos" })
                                         }
                                     } else {
                                         return res.status(500).send({ mensaje: "no eres mayor a 17 años" })
@@ -152,13 +150,13 @@ function newForm(req, res) {
                                     return res.status(500).send({ mensaje: "agregue todos los parametros" })
                                 }
                             } else {
-                                return res.status(200).send({ mensaje: "El último carácter debe de terminar en 1,3 o 9" })
+                                return res.status(500).send({ mensaje: "El último carácter debe de terminar en 1,3 o 9" })
                             }
                         } else {
-                            return res.status(200).send({ mensaje: "El tercer carácter deberá de ser 5" })
+                            return res.status(500).send({ mensaje: "El tercer carácter deberá de ser 5" })
                         }
                     } else {
-                        return res.status(200).send({ mensaje: "El primer carácter deberá ser A (mayúscula)" })
+                        return res.status(500).send({ mensaje: "El primer carácter deberá ser A (mayúscula)" })
                     }
                 } else {
                     return res.status(500).send({ mensaje: "el carnet no debe tener 0" })
@@ -182,4 +180,4 @@ function VerFormularios(req, res) {
 module.exports = {
     newForm,
     VerFormularios
-}
+}   
