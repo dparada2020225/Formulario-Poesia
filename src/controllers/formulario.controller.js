@@ -87,7 +87,7 @@ function newForm(req, res) {
                                             modeloFormulario.save((err, formularioGuardado) => {
                                                 if (err) return res.status(500).send({ mensaje: 'error en la peticion ' })
                                                 if (!formularioGuardado) return res.status(500).send({ mensaje: 'error al crear formulario ' })
-                                                return res.status(200).send({ Formulario: formularioGuardado })
+                                                return res.status(200).send({formularioGuardado})
                                         
                                             })
                                         } else if (UltimaLetra === "3" && generoLiterario === "epica") {
@@ -108,7 +108,7 @@ function newForm(req, res) {
                                             modeloFormulario.save((err, formularioGuardado) => {
                                                 if (err) return res.status(500).send({ mensaje: 'error en la peticion ' })
                                                 if (!formularioGuardado) return res.status(500).send({ mensaje: 'error al crear formulario ' })
-                                                return res.status(200).send({ Formulario: formularioGuardado })
+                                                return res.status(200).send({formularioGuardado})
                                         
                                             })
                                         } else if ((UltimaLetra === "1" || UltimaLetra === "3" || UltimaLetra === "9") && (generoLiterario === "epica" || generoLiterario === "lirica" || generoLiterario === "dramatico")) {
@@ -139,7 +139,7 @@ function newForm(req, res) {
                                             modeloFormulario.save((err, formularioGuardado) => {
                                                 if (err) return res.status(500).send({ mensaje: 'error en la peticion ' })
                                                 if (!formularioGuardado) return res.status(500).send({ mensaje: 'error al crear formulario ' })
-                                                return res.status(200).send({ Formulario: formularioGuardado })
+                                                return res.status(200).send({formularioGuardado})
                                         
                                             })
                                         } else {
