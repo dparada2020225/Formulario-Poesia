@@ -7,11 +7,11 @@ const FormularioSchema = Schema({
     direccion: String,
     genero: String,
     telefono: Number,
-    fechaNacimiento: Date,
+    fechaNacimiento: String,
     carrera: String,
     generoLiterario: String,
-    fechaInscripcion: Date,
-    fechaDeclamacion: Date,
+    fechaInscripcion: String,
+    fechaDeclamacion: String,
     edad: Number
 });
 

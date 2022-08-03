@@ -41,23 +41,26 @@ function newForm(req, res) {
                                     let Mayor17 = String(calcularEdad(parametros.fechaNacimiento))
 
                                     if (Mayor17 >= "17") {
+                                        let fechaNacimiento1 = parametros.fechaNacimiento
+                                        let fechaNacimiento2 = new Date(fechaNacimiento1)
+
                                         modeloFormulario.carnet = parametros.carnet
                                         modeloFormulario.nombre = parametros.nombre
                                         modeloFormulario.direccion = parametros.direccion
                                         modeloFormulario.genero = parametros.genero
                                         modeloFormulario.telefono = parametros.telefono
-                                        modeloFormulario.fechaNacimiento = parametros.fechaNacimiento
+                                        modeloFormulario.fechaNacimiento = fechaNacimiento2.toLocaleDateString('en-GB')
                                         modeloFormulario.carrera = parametros.carrera
                                         modeloFormulario.generoLiterario = parametros.generoLiterario
-                                        modeloFormulario.fechaInscripcion = new Date()
+                                        modeloFormulario.fechaInscripcion = (new Date()).toLocaleDateString('en-GB')
                                         modeloFormulario.edad = Number(calcularEdad(parametros.fechaNacimiento))
 
                                          
                                         let generoLiterario = modeloFormulario.generoLiterario;
-                                        let inscripcion = modeloFormulario.fechaInscripcion;
+                                        let inscripcion = new Date();
                                         function sumarDias(fecha, dias) {
                                             fecha.setDate(fecha.getDate() + dias);
-                                            return fecha;
+                                            return fecha.toLocaleDateString('en-GB');
                                         }
                                         if (UltimaLetra === "1" && generoLiterario === "dramatico") {
                                             let day;
@@ -66,16 +69,16 @@ function newForm(req, res) {
                                                     day = sumarDias(inscripcion, 5)
                                                     break;
                                                 case 1:
-                                                    day = sumarDias(inscripcion, 4)
+                                                    day = sumarDias(inscripcion, 7)
                                                     break;
                                                 case 2:
-                                                    day = sumarDias(inscripcion, 3)
+                                                    day = sumarDias(inscripcion, 7)
                                                     break;
                                                 case 3:
-                                                    day = sumarDias(inscripcion, 2)
+                                                    day = sumarDias(inscripcion, 7)
                                                     break;
                                                 case 4:
-                                                    day = sumarDias(inscripcion, 1)
+                                                    day = sumarDias(inscripcion, 7)
                                                     break;
                                                 case 5:
                                                     day = sumarDias(inscripcion, 7)
@@ -87,7 +90,7 @@ function newForm(req, res) {
                                             modeloFormulario.save((err, formularioGuardado) => {
                                                 if (err) return res.status(500).send({ mensaje: 'error en la peticion ' })
                                                 if (!formularioGuardado) return res.status(500).send({ mensaje: 'error al crear formulario ' })
-                                                return res.status(200).send((formularioGuardado.fechaDeclamacion).toLocaleDateString())
+                                                return res.status(200).send(formularioGuardado.fechaDeclamacion)
                                             })
                                         } else if (UltimaLetra === "3" && generoLiterario === "epica") {
                                             var date = new Date()
@@ -107,7 +110,7 @@ function newForm(req, res) {
                                             modeloFormulario.save((err, formularioGuardado) => {
                                                 if (err) return res.status(500).send({ mensaje: 'error en la peticion ' })
                                                 if (!formularioGuardado) return res.status(500).send({ mensaje: 'error al crear formulario ' })
-                                                return res.status(200).send((formularioGuardado.fechaDeclamacion).toLocaleDateString())
+                                                return res.status(200).send(formularioGuardado.fechaDeclamacion)
                                             })
                                         } else if ((UltimaLetra === "1" || UltimaLetra === "3" || UltimaLetra === "9") && (generoLiterario === "epica" || generoLiterario === "lirica" || generoLiterario === "dramatico")) {
                                             let day;
@@ -137,7 +140,7 @@ function newForm(req, res) {
                                             modeloFormulario.save((err, formularioGuardado) => {
                                                 if (err) return res.status(500).send({ mensaje: 'error en la peticion ' })
                                                 if (!formularioGuardado) return res.status(500).send({ mensaje: 'error al crear formulario ' })
-                                                return res.status(200).send((formularioGuardado.fechaDeclamacion).toLocaleDateString())
+                                                return res.status(200).send(formularioGuardado.fechaDeclamacion)
                                         
                                             })
                                         } else {
